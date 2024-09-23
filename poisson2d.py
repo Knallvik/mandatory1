@@ -194,7 +194,7 @@ class Poisson2D:
             ix_start = ix+(1-k)
         elif ix-order < 0:
             # loop from 0 to k
-            lsx = self.laplace_poly(x,xi[:k+1,0])
+            lsx = self.laplace_poly(x,xi[:k,0])
             ix_start = 0
         else:
             # loop ix-1, ix, ix+1 if order=2, loop ix-1, ix, ix+1, ix+2 if order=3 and so on. 
@@ -210,15 +210,15 @@ class Poisson2D:
             jy_start = jy+(1-k)
         elif jy-order < 0:
             # loop from 0 to k
-            lsy = self.laplace_poly(y,yj[0,:k+1])
+            lsy = self.laplace_poly(y,yj[0,:k])
             jy_start = 0
         else:
             # loop jy-1, ix, jy+1 if order=3, loop jy-1, ix, jy+1, jy+2 if order=4 and so on. 
-            lowest_index = yj-int((k-1)/2)
-            highest_index = yj+int(k/2)+1 #+1 because of how python gets the range i:N (goes to N-1)
+            lowest_index = jy-int((k-1)/2)
+            highest_index = jy+int(k/2)+1 #+1 because of how python gets the range i:N (goes to N-1)
             lsy = self.laplace_poly(y,yj[0,lowest_index:highest_index])
             jy_start = lowest_index
-        
+        print(lsx,lsy)
         u = 0
         #Keep consistent with where the function is evaluated
         i = ix_start
@@ -246,7 +246,7 @@ class Poisson2D:
         The value of u(x, y)
 
         """        
-        u = self.laplace_func(x,y,order=4)
+        u = self.laplace_func(x,y,order=3)
         return u
         
 
