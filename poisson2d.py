@@ -200,6 +200,7 @@ class Poisson2D:
             # loop ix-1, ix, ix+1 if order=2, loop ix-1, ix, ix+1, ix+2 if order=3 and so on. 
             lowest_index = ix-int((k-1)/2)
             highest_index = ix+int(k/2)+1 #+1 because of how python gets the range i:N (goes to N-1)
+            
             lsx = self.laplace_poly(x,xi[lowest_index:highest_index,0])
             ix_start = lowest_index
             
@@ -213,16 +214,18 @@ class Poisson2D:
             lsy = self.laplace_poly(y,yj[0,:k])
             jy_start = 0
         else:
-            # loop jy-1, ix, jy+1 if order=3, loop jy-1, ix, jy+1, jy+2 if order=4 and so on. 
+            # loop jy-1, ix, jy+1 if order=3, loop jy-1, jy, jy+1, jy+2 if order=4 and so on. 
             lowest_index = jy-int((k-1)/2)
             highest_index = jy+int(k/2)+1 #+1 because of how python gets the range i:N (goes to N-1)
+            
             lsy = self.laplace_poly(y,yj[0,lowest_index:highest_index])
             jy_start = lowest_index
+            
         print(lsx,lsy)
         u = 0
         #Keep consistent with where the function is evaluated
         i = ix_start
-        #Sum over the basis plynomials at x and y (the normalized weight of each mesh function value)
+        #Sum over the basis plynomials at x and y (the weight of each mesh function value)
         for lx in lsx:
             #See i = ix_start
             j = jy_start
