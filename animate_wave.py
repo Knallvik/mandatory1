@@ -33,4 +33,4 @@ def frame(i):
     return plot,
 
 ani = FuncAnimation(fig=fig, func=frame, frames=Nt)
-ani.save(filename="neumannwave.gif.gif", writer="pillow")
+ani.save(filename="neumannwave.gif", writer="pillow")
