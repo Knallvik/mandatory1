@@ -194,11 +194,15 @@ def test_convergence_wave2d_neumann():
     assert abs(r[-1]-2) < 0.05
 
 def test_exact_wave2d():
-    raise NotImplementedError
-
+    sol = Wave2D()
+    h, err = sol(10, 10, cfl=1/np.sqrt(2), mx=2, my=2, store_data=-1)
+    assert err[-1] < 1e-12
+    solN = Wave2D_Neumann()
+    h, err = solN(10, 10, cfl=1/np.sqrt(2), mx=2, my=2, store_data=-1)
+    assert err[-1] < 1e-12
 
 if __name__=='__main__':
     test_convergence_wave2d()
     test_convergence_wave2d_neumann()
-
+    test_exact_wave2d()
 
