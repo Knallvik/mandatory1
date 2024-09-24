@@ -29,6 +29,10 @@ plot = ax.plot_surface(sol.xij, sol.yij, data[0], cmap='viridis')
 def frame(i):
     ax.cla()
     ax.set_zlim(z_min, z_max)
+    ax.set_xlabel('x [length]')
+    ax.set_ylabel('y [length]')
+    ax.set_zlabel('U [arbitrary]')
+    ax.set_title('Neumann wave')
     plot = ax.plot_surface(sol.xij, sol.yij, data[i], cmap='viridis')
     return plot,
 
