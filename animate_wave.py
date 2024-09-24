@@ -8,7 +8,7 @@ my = 2
 c = 1
 cfl = 1/np.sqrt(2)
 N = 10
-Nt = 1000
+Nt = 50
 
 sol = Wave2D_Neumann()
 data = sol(N, Nt, cfl=cfl, c=1.0, mx=mx, my=my, store_data=1)
